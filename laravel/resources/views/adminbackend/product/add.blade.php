@@ -34,11 +34,13 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select required="required" class="form-control col-md-7 col-xs-12" name="category_id">
+                        
                           <option value="">No sub catogery</option>
                               @foreach($catagoryes as $catagory)
                               <option value="{{$catagory->id}}">{{$catagory->catagory_name}}</option>
                               @endforeach
                           </select>
+                          <a href="{{route('catagory.add')}}" ><i class="btn btn-success">Add  New Catagory</i></a>
                         </div>
                       </div>
 

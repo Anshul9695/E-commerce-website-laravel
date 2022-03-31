@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Catagory;
 use App\Models\Product;
+use App\Models\ProductDetails;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -50,7 +51,7 @@ class ProductController extends Controller
       $data['image']=$filename;
     }
     $create=Product::create($data);
-return redirect()->back();
+return redirect()->route('product.list');
     }
 
     /**
@@ -109,8 +110,47 @@ return redirect()->back();
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request,Product $product)
     {
-        //
+        $id=$request->id;
+        $product=Product::find($id);
+        $product->delete();
+        return response()->json('success');
     }
+
+    public function extraDetails(Request $request,Product $product){
+       $id=$request->id;
+    //    $product=Product::findOrFail($id);
+       $product=Product::where('id',$id)->with('productDetails')->first();
+       $catagoryes=Catagory::whereNotNull('category_id')->get();
+ return view('adminbackend.product.extradetails',compact('product','catagoryes','id'));
+    }
+
+ public function extraDetailsStore(Request $request)
+    {
+        $id=$request->id;
+     $data=array(
+            'title'=>$request->title,
+            'product_id'=>$id,
+            'total_items'=>$request->total_items,
+            'description'=>$request->description
+     );
+    $create=ProductDetails::updateOrCreate([
+        'product_id'=>$id],$data);
+        return redirect()->route('product.list');
+    }
+    
+//view in product in  details 
+
+
+public function viewextraDetails(Request $request,Product $product){
+    $id=$request->id;
+ //    $product=Product::findOrFail($id);
+    $products=Product::where('id',$id)->with('productDetails')->get();
+
+    $catagoryes=Catagory::whereNotNull('category_id')->first();
+
+return view('adminbackend.product.viewProductInDetails',compact('products','catagoryes','id'));
+ }
+
 }

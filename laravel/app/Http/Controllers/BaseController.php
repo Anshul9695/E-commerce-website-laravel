@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
     public function Home(){
-        return view('frontEnd.home');
+        $products=Product::get();
+        $new_product=Product::limit(4)->latest()->get();
+        return view('frontEnd.home',compact('products','new_product'));
     }
     public function SpacialOffers(){
         return view('frontEnd.layouts.spacialOffers');

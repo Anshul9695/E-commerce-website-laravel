@@ -12,4 +12,8 @@ class Product extends Model
     public function catname(){
         return $this->belongsTo(Catagory::class,'category_id');
     }
+
+    public function productDetails(){
+        return $this->hasOne(ProductDetails::class);
+    }
 }

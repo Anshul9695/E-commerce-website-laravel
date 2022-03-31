@@ -41,7 +41,7 @@
 <script>
 $('.catagory_delete').on('click',function(){
     if(confirm('Are You sure want to delete the category')){
-var id=$(this).data(id);
+var id=$(this).data('id');
 $.ajax({
 url:'{{route("catagory.delete")}}',
 method:'post',

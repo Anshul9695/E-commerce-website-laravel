@@ -3,6 +3,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\CatagoryController;
 use App\Http\Controllers\ProductController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -43,7 +44,7 @@ Route::get('/catagoryes',[CatagoryController::class,'index'])->name('catagory.li
     //edit and update catagory
 Route::get('/catagoryes/edit/{id}',[CatagoryController::class,'edit'])->name('catagory.edit');
 Route::post('/catagoryes/edit/{id}',[CatagoryController::class,'update'])->name('catagory.update');
-Route::post('/catagoryes/delete',[CatagoryController::class,'destroy'])->name('catagory.delete');
+Route::post('/catagoryes/delete',[CatagoryController::class,'destroy'])->name('catagory.delete');  //delete the catagory
 
 //Making product manager here...
 Route::get('/product',[ProductController::class,'index'])->name('product.list');
@@ -52,6 +53,14 @@ Route::post('/product/create',[ProductController::class,'store'])->name('product
 
 Route::get('/product/edit/{id}',[ProductController::class,'edit'])->name('product.edit'); //this is the form to get all data from table 
 Route::post('/product/edit/{id}',[ProductController::class,'update'])->name('product.update');  //this route with update funciton  is maked for update record 
+
+Route::post('/product/delete',[ProductController::class,'destroy'])->name('product.delete'); //delete the product
+Route::get('/porduct/extradetails/{id}',[ProductController::class,'extraDetails'])->name('product.extraDetails');
+
+Route::post('/porduct/extradetails/{id}',[ProductController::class,'extraDetailsStore'])->name('product.extraDetailsStore');
+
+
+Route::get('/product/viewiporductndetails/{id}',[ProductController::class,'viewextraDetails'])->name('product.viewindetails'); 
 //  });
 
 
