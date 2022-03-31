@@ -30,6 +30,9 @@
                 <img src="{{asset('uploads/'.$product->image)}}" alt="" style="height: 80px; width:80px">
             </td> 
             <td>{{$product->created_at}}</td> 
+            <td>
+            <a href="{{route('product.edit',$product->id)}}" style="font-size: 25px; padding:5px;"><i class="fa fa-edit"></i></a>
+            </td>
         </tr>
   @endforeach
     </tbody>

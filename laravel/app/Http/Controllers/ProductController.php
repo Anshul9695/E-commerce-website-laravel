@@ -70,9 +70,12 @@ return redirect()->back();
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Request $request,Product $product)
     {
-        //
+        $id=$request->id;
+       $product=Product::findOrFail($id);
+       $catagoryes=Catagory::whereNotNull('category_id')->get();
+       return view('adminbackend.product.edit',compact('product','catagoryes'));
     }
 
     /**
