@@ -87,7 +87,20 @@ return redirect()->back();
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $id=$request->id;
+       $data=array(
+          'product_name'=>$request->product_name,
+          'category_id'=>$request->category_id,
+          'product_price'=>$request->product_price
+       );
+       if($request->hasFile('image')){
+        $image=$request->file('image');
+        $filename=date('dmY').time().'.'.$image->getClientOriginalExtension();
+        $image->move(public_path('/uploads'),$filename);
+        $data['image']=$filename;
+      }
+      $create=Product::where('id',$id)->update($data);
+      return redirect()->route('product.list');
     }
 
     /**

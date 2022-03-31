@@ -1,7 +1,7 @@
 @extends('adminbackend.layout.layout')
 
 @section('content')
-<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
+<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{route('product.update',$product->id)}}" method="post" enctype="multipart/form-data">
        <div class="x_title">
            @csrf
                     <h2>Form Design <small>different form elements</small></h2>

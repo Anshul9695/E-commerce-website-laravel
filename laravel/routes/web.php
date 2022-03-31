@@ -51,6 +51,7 @@ Route::get('/product/create',[ProductController::class,'create'])->name('product
 Route::post('/product/create',[ProductController::class,'store'])->name('product.store');
 
 Route::get('/product/edit/{id}',[ProductController::class,'edit'])->name('product.edit'); //this is the form to get all data from table 
+Route::post('/product/edit/{id}',[ProductController::class,'update'])->name('product.update');  //this route with update funciton  is maked for update record 
 //  });
 
 
