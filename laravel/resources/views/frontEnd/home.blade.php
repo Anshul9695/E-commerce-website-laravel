@@ -68,40 +68,39 @@
 @endsection
 
 @section('content')
+
+<!-- Sidebar end=============================================== -->
 <div class="span9">		
 			<div class="well well-small">
-			<h4>Featured Products <small class="pull-right">200+ featured products</small></h4>
+			<h4>Featured Products <small class="pull-right">{{$totalproduct}}+ Total Product In Featured Products</small></h4>
 			<div class="row-fluid">
 			<div id="featured" class="carousel slide">
+ @php $i=0; @endphp
+@foreach($products->chunk(4) as $product)
 			<div class="carousel-inner">
-				@php $i=0; @endphp
-			@foreach($products->chunk(4) as $product )
-           
-		<div class="item @if($i==0) active @endif">
+			  <div class="item @if($i==0) active @endif">
 			  @php $i=1; @endphp
 			  <ul class="thumbnails">
-
+				  @foreach($product as $value)
 				<li class="span3">
 				  <div class="thumbnail">
-				  @foreach($product as $value)
 				  <i class="tag"></i>
-					<a href="product_details.html"><img src="{{asset('uploads/'.$value->image)}}"   alt=""></a>
+					<a href="{{route('productdetails',$value->id)}}"><img src="{{asset('uploads/'.$value->image)}}" alt=""></a>
 					<div class="caption">
 					  <h5>{{$value->product_name}}</h5>
-					  <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">{{$value->product_price}}</span></h4>
+					  <h4><a class="btn" href="{{route('productdetails',$value->id)}}">VIEW</a> <span class="pull-right">{{$value->product_price}}</span></h4>
 					</div>
 				  </div>
 				</li>
-
-@endforeach
+				@endforeach
 			  </ul>
-		</div>
-@endforeach
-
 			  </div>
-			  </div>
+			</div>
+			@endforeach
+		
 			  <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
 			  <a class="right carousel-control" href="#featured" data-slide="next">›</a>
+			
 			  </div>
 			  </div>
 		</div>
@@ -111,79 +110,18 @@
 
 		<h4>Latest Products </h4>
 			  <ul class="thumbnails">
+				  @foreach($new_product as $newproduct)
 				<li class="span3">
 				  <div class="thumbnail">
-					<a  href="product_details.html"><img src="themes/images/products/6.jpg" alt=""/></a>
+					<a  href="{{route('productdetails',$newproduct->id)}}"><img src="{{asset('uploads/'.$newproduct->image)}}" style="height: 300px;" alt=""/></a>
 					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
-					  </p>
-					 
-					  <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+					  <h5>{{$newproduct->product_name}}</h5>
+					
+					  <h4 style="text-align:center"><a class="btn" href="{{route('productdetails',$newproduct->id)}}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">{{$newproduct->product_price}}</a></h4>
 					</div>
 				  </div>
 				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="product_details.html"><img src="themes/images/products/7.jpg" alt=""/></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
-					  </p>
-					 <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="product_details.html"><img src="themes/images/products/8.jpg" alt=""/></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
-					  </p>
-					   <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="product_details.html"><img src="themes/images/products/9.jpg" alt=""/></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
-					  </p>
-					  <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="product_details.html"><img src="themes/images/products/10.jpg" alt=""/></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
-					  </p>
-					  <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="product_details.html"><img src="themes/images/products/11.jpg" alt=""/></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
-					  </p>
-					   <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
-					</div>
-				  </div>
-				</li>
+			@endforeach
 			  </ul>	
 
 		</div>

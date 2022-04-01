@@ -25,7 +25,12 @@ Route::get('/spacialoffers',[BaseController::class,'SpacialOffers'])->name('spac
 Route::get('/delevery',[BaseController::class,'Delevery'])->name('delevery');
 Route::get('/contact',[BaseController::class,'Contact'])->name('contact');
 Route::get('/cart',[BaseController::class,'Cart'])->name('cart');
-Route::get('/productdetails',[BaseController::class,'ProductDetails'])->name('productdetails');
+Route::get('/productdetails/{id}',[BaseController::class,'ProductDetails'])->name('productdetails');  //view product in details over all info about product
+
+Route::get('/user/login',[BaseController::class,'userlogin'])->name('frontEnd.login');
+Route::post('/user/login',[BaseController::class,'loginCheck'])->name('loginCheck');
+Route::post('/user/Register',[BaseController::class,'userStore'])->name('user_store');
+
 
                  // BACKEND TEMPLATE ROUTES
         Route::get('/admin/login',[AdminController::class,'loginuser'])->name('adminbackend.login');

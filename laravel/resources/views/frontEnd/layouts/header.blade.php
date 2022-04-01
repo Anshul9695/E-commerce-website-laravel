@@ -22,7 +22,7 @@
 	<span class="icon-bar"></span>
 </a>
   <div class="navbar-inner">
-    <a class="brand" href="{{route('/')}}"><img src="themes/images/logo.png" alt="Bootsshop"/></a>
+    <a class="brand" href="{{route('/')}}"><img src="{{asset('/themes/images/ecomlogo.png')}}" style="height: 70px;" alt="Bootsshop"/></a>
 		<form class="form-inline navbar-search" method="post" action="products.html" >
 		<input id="srchFld" class="srchTxt" type="text" />
 		  <select class="srchTxt">
@@ -39,32 +39,19 @@
 	 <li class=""><a href="{{route('spacialoffers')}}">Specials Offer</a></li>
 	 <li class=""><a href="{{route('delevery')}}">Delivery</a></li>
 	 <li class=""><a href="{{route('contact')}}">Contact</a></li>
+
 	 <li class="">
-	 <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
-	<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
-		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3>Login Block</h3>
-		  </div>
-		  <div class="modal-body">
-			<form class="form-horizontal loginFrm">
-			  <div class="control-group">								
-				<input type="text" id="inputEmail" placeholder="Email">
-			  </div>
-			  <div class="control-group">
-				<input type="password" id="inputPassword" placeholder="Password">
-			  </div>
-			  <div class="control-group">
-				<label class="checkbox">
-				<input type="checkbox"> Remember me
-				</label>
-			  </div>
-			</form>		
-			<button type="submit" class="btn btn-success">Sign in</button>
-			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-		  </div>
-	</div>
+		@if(Auth::user())
+		 <li>
+	 <a href="{{route('frontEnd.login')}}" ><span class="btn btn-large btn-danger">Logout</span></a>
+	 </li>
+	 @else
+	 <li>
+	 <a href="{{route('frontEnd.login')}}"><span class="btn btn-large btn-success">Login / Register</span></a>
+	 </li>
+	 @endif
 	</li>
+
     </ul>
   </div>
 </div>
